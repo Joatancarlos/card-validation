@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="./css/styles.css">
+  <title>Frontend Mentor | Interactive card details form</title>
+  
+</head>
+<body>
+
+    <div class="container">
+        <div class="aside">
+
+            <div class="front-card">
+                <div class="card">
+                    <img src="images/bg-card-front.png" alt="front card">
+                    <div class="inside-front-card">
+                        <img class="card-logo" src="images/card-logo.svg" alt="Card Logo" >
+                        <div class="card-data">
+                            <input 
+                                class="number-card inputCard" 
+                                type="text" 
+                                name="number-card" 
+                                id="number-card" 
+                                value="0000 0000 0000 0000" 
+                                readonly
+                            >
+                            <div class="data-name-valid">
+                                <div class="data-name">
+                                    <input 
+                                        class="text-card inputCard" 
+                                        type="text" 
+                                        name="name" 
+                                        id="name"
+                                        value="Jane Appleseed" 
+                                        readonly
+                                    >
+                                </div>
+                                <div class="data-valid">
+                                    <input 
+                                        class="text-card inputCard" 
+                                        type="text" 
+                                        name="month" 
+                                        id="month" 
+                                        readonly 
+                                        value="00" 
+                                        size="1"
+                                    >
+                                    <span>/</span>
+                                    <input 
+                                        class="text-card inputCard" 
+                                        type="text" 
+                                        name="year" 
+                                        id="year" 
+                                        readonly 
+                                        value="00" 
+                                        size="1"
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="back-card">
+                <img src="images/bg-card-back.png" alt="back card">
+                <div class="card">
+                    <div class="inside-back-card">
+                        <input 
+                            class="cvc inputCard" 
+                            type="text" 
+                            name="cvc" 
+                            id="cvc" 
+                            value="000" 
+                            size="3">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <main class="main">
+
+            <form class="form">
+                <div>
+                    <label class="label" for="nameForm">Cardholder Name</label>
+                    <input 
+                        class="inputForm width100" 
+                        type="text" 
+                        name="nameForm" 
+                        id="nameForm" 
+                        maxlength="45" 
+                        placeholder="Jane Appleseed"
+                        autocomplete="off"
+                    >
+                    <div class="error" id="errorName">
+                        <span>Wrong format, text only</span>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="label" for="numberForm">Card Number</label>
+                    <input 
+                        class="inputForm width100" 
+                        type="text" 
+                        maxlength="19" 
+                        name="numberForm" 
+                        id="numberForm" 
+                        placeholder="0000 0000 0000 0000"
+                    >
+                    <div class="error" id="errorNumber">
+                        <span>Wrong format, numers only</span>
+                    </div>
+                </div>
+
+                <div class="validAndCvc">
+                    <div class="inputsValid">
+                        <label class="label" for="monthValid">Exp. Date (MM/YY)</label>
+                        <div>
+                            <input 
+                                class="inputForm validForm" 
+                                type="text" 
+                                name="monthValid" 
+                                id="monthValid" 
+                                placeholder="MM" 
+                                maxlength="2" 
+                            >
+                            <input 
+                                class="inputForm validForm" 
+                                type="text" 
+                                name="yearValid" 
+                                id="yearValid" 
+                                placeholder="YY" 
+                                maxlength="2"
+                            >
+                        </div>
+                        <div class="error" id="errorDate">
+                            <span>Can't be blank</span>
+                        </div>
+                    </div>
+
+                    <div class="inputsValid">
+                        <label class="label" for="cvcForm">CVC</label>
+                        <input 
+                            class="inputForm cvcForm" 
+                            type="text" 
+                            name="cvcForm" 
+                            id="cvcForm" 
+                            placeholder="e.g. 123" 
+                            maxlength="3"
+                        >
+                        <div class="error" id="errorCvc">
+                            <span>Can't be blank</span>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="btn-form" class="btn width100" type="submit">Confirm</button>
+            </form>
+
+            <div class="thanks">
+                <img src="images/icon-complete.svg" alt="icon checked">
+                <h2 class="title">Thank You!</h2>
+                <span class="text">We've added your card details</span>
+                <button id="btn-confirm" class="btn width100" type="submit">Continue</button>
+            </div>
+        </main>
+    </div>
+
+
+  <!-- Completed state start 
+
+  Thank you!
+  We've added your card details
+  Continue
+  
+  -->
+  <script src="./js/script.js"></script>
+</body>
+</html>
