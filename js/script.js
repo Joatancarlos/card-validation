@@ -20,6 +20,23 @@ let btnConfirm = document.querySelector('#btn-form')
 let divThanks = document.querySelector('.thanks')
 let btnContinue = document.querySelector('#btn-confirm') 
 
+function formatCreditCardNumber(num) {
+    num = num.split(" ").join("");
+    let arr = num.split("");
+    let formattedNum = [];
+    if (arr.length < 4) return num;
+  
+    for (let i = 0; i < arr.length; i++) {
+      if (i !== 0 && i % 4 === 0) {
+        formattedNum.push(" ");
+      }
+  
+      formattedNum.push(arr[i]);
+    }
+  
+    return formattedNum.join("");
+  }
+
 // Detects the input of the form and applies validation to the form's value. So, returns an object containing the validation result and the error message.
 const validation = (inputForm, inputValue) => {
     let regex
@@ -62,7 +79,11 @@ const validation = (inputForm, inputValue) => {
 
 // Inserts the form values into the card
 const updateValue = (inputCard, e) => {
-        inputCard.value = e.target.value
+        if (inputCard === numberCard) {
+            inputCard.value = formatCreditCardNumber(e.target.value)
+        } else {
+            inputCard.value = e.target.value
+        }
 }
 
 // add events in input form
@@ -77,6 +98,7 @@ listInputForms.forEach((input, index) => {
         } else {
             objValidation.divError.classList.remove('active')
         }     
+        
         updateValue(listInputsCard[index], e)
         
     })
@@ -87,8 +109,35 @@ listInputForms.forEach((input, index) => {
 // Hides the form and shows the divThanks
 btnConfirm.addEventListener('click', (e) => {
     e.preventDefault()
-    form.style.display = 'none'
-    divThanks.style.display = 'flex'
+
+    
+
+    // Verify if input value is empty or incorrect
+    let arrErrorMessage = []
+
+    // Transform Nodelist into array
+    Array.from(listErroMessage).map(item => {
+        if(item.classList.contains('active')) {
+            arrErrorMessage.push(item)
+        }
+    })
+
+    let arrEmptyValues = []
+    listInputForms.forEach((input) => {
+        if(input.value === '') {
+            arrEmptyValues.push(input)
+        } 
+    })
+    
+    if (arrEmptyValues.length > 0 || arrErrorMessage.length > 0) {
+        alert('There are empty or incorrect values ')
+    } else {
+        form.style.display = 'none'
+        divThanks.style.display = 'flex'
+    }
+
+
+    
     
 })
 
