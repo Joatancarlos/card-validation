@@ -37,14 +37,43 @@ function formatCreditCardNumber(num) {
     return formattedNum.join("");
   }
 
+const validationName = (name) => {
+    let reg1 = /[a-zA-Zá-ú]/g;
+    let reg2 = /[0-9'"!@#$%&*()_+/,£¢¬§ªº°~^]/g
+
+    let result
+
+    if (name && reg1.test(name) && !reg2.test(name)) {
+        result = true
+    } else {
+        result = false
+    }
+    
+    return result
+}
+
+const validationNumber = (num) => {
+    let result
+
+    let reg = /[0-9]/g
+    let reg2 = /[a-zA-Z'"!@#$%&*()_+/,£¢¬§ªº°~^]/g
+
+    if (reg.test(num) && !reg2.test(num)) {
+        result = true
+    } else {
+        result = false
+    }
+    return result
+}
+
 // Detects the input of the form and applies validation to the form's value. So, returns an object containing the validation result and the error message.
 const validation = (inputForm, inputValue) => {
     let regex
     let err
     
     const validation = {
-        name: /\d/g,
-        number: /\D/g,
+        name: validationName(inputValue),
+        number: validationNumber(inputValue),
         
     }
 
@@ -72,7 +101,7 @@ const validation = (inputForm, inputValue) => {
     }
 
     return {
-        test: regex.test(inputValue),
+        test: !regex,
         divError: err
     } 
 }
@@ -81,6 +110,7 @@ const validation = (inputForm, inputValue) => {
 const updateValue = (inputCard, e) => {
         if (inputCard === numberCard) {
             inputCard.value = formatCreditCardNumber(e.target.value)
+            e.target.value = inputCard.value
         } else {
             inputCard.value = e.target.value
         }
